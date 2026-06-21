@@ -182,7 +182,7 @@ Taken together, these properties make the Tweedie model a compelling alternative
 ## References
 
 - Dunn, P. K., & Smyth, G. K. (2005, 2008). Tweedie exponential dispersion models  
-- Hardin and Hilbe's Generalized Linear Models and Extensions. 4th Edition, Stata Press 2018, isbn 978-1-59718-225-6.
+- Hardin, J.W. and Hilbe, J.M., (2018). Generalized Linear Models and Extensions. 4th Edition, Stata Press, ISBN 978-1-59718-225-6.
 - Jørgensen, B. (1987). Exponential dispersion models  
 - Smyth, G. K. (1996). Regression modelling of data with exact zeros  
 - McCullagh, P., & Nelder, J. A. (1989). *Generalized Linear Models*  
