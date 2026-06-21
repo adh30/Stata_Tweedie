@@ -1,12 +1,14 @@
 # Stata_Tweedie
 
+Implements a Tweedie family in Stata's glm command. 
+
 ## Why the Tweedie Model with Log Link is Appropriate for Modelling White Matter Hyperintensities
 
-White matter hyperintensities (WMH), commonly quantified from neuroimaging data, are widely used as markers of small vessel cerebrovascular disease and brain ageing. These outcomes typically exhibit a **highly right-skewed distribution**, with a substantial proportion of individuals having values close to or exactly zero. This combination presents challenges for standard regression modelling approaches.
+White matter hyperintensities (WMH) are widely used as markers of brain small vessel disease. WMH volumes typically exhibit a **highly right-skewed distribution**. In some cases, such as younger people or regional WMH volume there may be a substantial proportion of individuals with zero volumes. This combination presents challenges for most Generalized linear models (GLMs)  modelling approaches.
 
 ---
 
-## Distributional Challenges
+## Distributional issues
 
 WMH volumes are non-negative and typically characterised by:
 
@@ -14,7 +16,7 @@ WMH volumes are non-negative and typically characterised by:
 - Heteroskedasticity (variance increasing with the mean)  
 - A non-negligible probability mass at zero  
 
-Generalized linear models (GLMs) using the **gamma distribution** are often applied to such data because the gamma family accommodates continuous, positive, right-skewed outcomes. However, a fundamental limitation is that the gamma distribution is defined only on the strictly positive real line, precluding zero observations. [1](https://arxiv.org/pdf/1804.07780)  
+GLMs using the **gamma distribution** are often used with WMH data because the gamma family accommodates continuous, positive, right-skewed outcomes. However, a fundamental limitation is that the gamma distribution is defined  on the strictly positive real line, precluding zero observations. [1](https://arxiv.org/pdf/1804.07780)  
 
 In practice, this leads to undesirable workarounds such as:
 
@@ -22,29 +24,30 @@ In practice, this leads to undesirable workarounds such as:
 - Adding arbitrary constants  
 - Using mixture or two-part (hurdle) models  
 
-These approaches introduce bias, inefficiency, or additional modelling complexity.
+These approaches may introduce bias, inefficiency, or additional modelling complexity.
 
 ---
 
 ## The Tweedie Distribution
 
-The **Tweedie family of distributions** provides a unified framework for modelling data with these characteristics. Tweedie distributions are exponential dispersion models defined by a power mean–variance relationship:
+The **Tweedie family of distributions** provides a unified flexible framework for modelling WMH data. Tweedie distributions are exponential dispersion models defined by a power mean–variance relationship:
 
 \[
-\mathrm{Var}(Y) = \phi \mu^p
+$\mathrm{Var}(Y) = \phi \mu^p$
 \]
 
-where \( \mu \) is the mean, \( \phi \) is a dispersion parameter, and \( p \) is the **Tweedie power parameter**. [2](https://en.wikipedia.org/wiki/Tweedie_distribution)[3](https://www.rdocumentation.org/packages/tweedie/versions/3.0.17/topics/Tweedie)  
+where \( \mu \) is the mean, \( \phi \) is a dispersion parameter, and \( p \) is the **Tweedie power parameter**. [2](https://en.wikipedia.org/wiki/Tweedie_distribution)[3]
 
-Different values of \( p \) correspond to familiar distributions:
+Different values of \( p \) correspond to standard distributions:
 
 | \( p \) | Distribution |
 |--------|-------------|
+| 0 | Gaussian |
 | 1 | Poisson |
 | 2 | Gamma |
 | 3 | Inverse Gaussian |
 
-The most relevant case here is:
+The most relevant case for WMH is:
 
 \[
 1 < p < 2
@@ -64,7 +67,7 @@ This makes it particularly suitable for WMH data.
 In the compound Poisson–gamma representation:
 
 \[
-Y = \sum_{i=1}^{N} Z_i
+$Y = \sum_{i=1}^{N} Z_i$
 \]
 
 where:
@@ -86,9 +89,9 @@ This representation provides a natural interpretation for WMH:
 In GLMs, the link function specifies how the mean relates to covariates. The **log link** is defined as:
 
 \[
-\log(\mu) = X \beta
+$\log(\mu) = X \beta
 \quad \Rightarrow \quad
-\mu = \exp(X\beta)
+\mu = \exp(X\beta)$
 \]
 
 ---
@@ -179,6 +182,7 @@ Taken together, these properties make the Tweedie model a compelling alternative
 ## References
 
 - Dunn, P. K., & Smyth, G. K. (2005, 2008). Tweedie exponential dispersion models  
+- Hardin and Hilbe's Generalized Linear Models and Extensions. 4th Edition, Stata Press 2018, isbn 978-1-59718-225-6.
 - Jørgensen, B. (1987). Exponential dispersion models  
 - Smyth, G. K. (1996). Regression modelling of data with exact zeros  
 - McCullagh, P., & Nelder, J. A. (1989). *Generalized Linear Models*  
