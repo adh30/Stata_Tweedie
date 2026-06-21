@@ -36,7 +36,7 @@ $$
 \mathrm{Var}(Y) = \phi \mu^p
 $$
 
-where $\mu$ is the mean, $\phi$ is a dispersion parameter, and $p$ is the **Tweedie power parameter**. [2](https://en.wikipedia.org/wiki/Tweedie_distribution)[3]
+where $\mu$ is the mean, $\phi$ is a dispersion parameter, and $p$ is the **Tweedie power parameter**. [2](https://en.wikipedia.org/wiki/Tweedie_distribution)
 
 Different values of $p$ correspond to standard distributions:
 
