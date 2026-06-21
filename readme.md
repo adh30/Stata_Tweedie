@@ -1,10 +1,10 @@
 # Stata_Tweedie
 
-Implements a Tweedie family in Stata's glm command. 
+Implements a Tweedie family in Stata's Generalized linear models (glm) command. 
 
-## Why the Tweedie Model with Log Link is Appropriate for Modelling White Matter Hyperintensities
+## Why the Tweedie GLM model with log link may be useful for modelling White Matter Hyperintensity volume
 
-White matter hyperintensities (WMH) are widely used as markers of brain small vessel disease. WMH volumes typically exhibit a **highly right-skewed distribution**. In some cases, such as younger people or for regional WMH volumes there may be a substantial proportion of zero volumes. This presents challenges for the most commonly used Generalized linear models (GLMs).
+White matter hyperintensities (WMH) are widely used as markers of brain small vessel disease. WMH volumes typically exhibit a **highly right-skewed distribution**. In some instances (e.g. younger people or regional WMH volumes) there may be a substantial proportion of zero volumes. This presents challenges for the most commonly used Generalized linear models (GLMs).
 
 ---
 
