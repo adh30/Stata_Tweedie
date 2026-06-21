@@ -32,15 +32,15 @@ These approaches may introduce bias, inefficiency, or additional modelling compl
 
 The **Tweedie family of distributions** provides a unified flexible framework for modelling WMH data. Tweedie distributions are exponential dispersion models defined by a power mean–variance relationship:
 
-\[
-$\mathrm{Var}(Y) = \phi \mu^p$
-\]
+$$
+\mathrm{Var}(Y) = \phi \mu^p
+$$
 
-where \( \mu \) is the mean, \( \phi \) is a dispersion parameter, and \( p \) is the **Tweedie power parameter**. [2](https://en.wikipedia.org/wiki/Tweedie_distribution)[3]
+where $ \mu $ is the mean, $ \phi $ is a dispersion parameter, and $ p $ is the **Tweedie power parameter**. [2](https://en.wikipedia.org/wiki/Tweedie_distribution)[3]
 
-Different values of \( p \) correspond to standard distributions:
+Different values of $ p $ correspond to standard distributions:
 
-| \( p \) | Distribution |
+| $ p $ | Distribution |
 |--------|-------------|
 | 0 | Gaussian |
 | 1 | Poisson |
@@ -49,14 +49,14 @@ Different values of \( p \) correspond to standard distributions:
 
 The most relevant case for WMH is:
 
-\[
+$$
 1 < p < 2
-\]
+$$
 
 In this range, the Tweedie distribution corresponds to a **compound Poisson–gamma distribution**, which has:
 
 - A point mass at zero  
-- A continuous, positive, right-skewed distribution for \( Y > 0 \) [4](https://cran.r-universe.dev/tweedie/doc/tweedie.html)  
+- A continuous, positive, right-skewed distribution for $ Y > 0 $ [4](https://cran.r-universe.dev/tweedie/doc/tweedie.html)  
 
 This makes it particularly suitable for WMH data.
 
@@ -66,16 +66,16 @@ This makes it particularly suitable for WMH data.
 
 In the compound Poisson–gamma representation:
 
-\[
-$Y = \sum_{i=1}^{N} Z_i$
-\]
+$$
+Y = \sum_{i=1}^{N} Z_i
+$$
 
 where:
 
-- \( N \sim \text{Poisson}(\lambda) \)  
-- \( Z_i \) are independent gamma variables  
+- $ N \sim \text{Poisson}(\lambda) $  
+- $ Z_i $ are independent gamma variables  
 
-If \( N = 0 \), then \( Y = 0 \); otherwise, \( Y \) is positive and continuous. [5](https://en.wikipedia.org/wiki/Compound_Poisson_distribution)  
+If $ N = 0 $, then $ Y = 0 $; otherwise, $ Y $ is positive and continuous. [5](https://en.wikipedia.org/wiki/Compound_Poisson_distribution)  
 
 This representation provides a natural interpretation for WMH:
 
@@ -88,11 +88,11 @@ This representation provides a natural interpretation for WMH:
 
 In GLMs, the link function specifies how the mean relates to covariates. The **log link** is defined as:
 
-\[
-$\log(\mu) = X \beta
+$$
+\log(\mu) = X \beta
 \quad \Rightarrow \quad
-\mu = \exp(X\beta)$
-\]
+\mu = \exp(X\beta)
+$$
 
 ---
 
@@ -102,9 +102,9 @@ $\log(\mu) = X \beta
 
 The log link guarantees:
 
-\[
+$$
 \mu > 0
-\]
+$$
 
 This is consistent with the domain of WMH volumes and avoids invalid predictions.
 
@@ -120,9 +120,9 @@ Right-skewed outcomes are naturally stabilised on the log scale. This improves n
 
 Coefficients have a multiplicative interpretation:
 
-\[
+$$
 \exp(\beta_j) - 1
-\]
+$$
 
 represents a proportional change in the mean outcome for a one-unit increase in a predictor.
 
@@ -132,9 +132,9 @@ represents a proportional change in the mean outcome for a one-unit increase in 
 
 The log link aligns well with the mean–variance relationship:
 
-\[
+$$
 \mathrm{Var}(Y) \propto \mu^p
-\]
+$$
 
 which reflects increasing variability with increasing mean — a common feature of WMH data.
 
@@ -171,7 +171,7 @@ The Tweedie model resolves this limitation by incorporating both zeros and posit
 
 The Tweedie generalized linear model with a log link provides a principled and flexible approach for modelling white matter hyperintensities. Specifically:
 
-- The Tweedie family with \(1 < p < 2\) captures both zero and continuous positive outcomes  
+- The Tweedie family with $1 < p < 2$ captures both zero and continuous positive outcomes  
 - The compound Poisson–gamma structure provides a natural interpretation for WMH accumulation  
 - The log link ensures positivity, improves stability, and yields interpretable effects  
 
