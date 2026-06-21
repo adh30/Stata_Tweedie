@@ -100,3 +100,89 @@ $$
 
 ### 1. Ensuring Positivity
 
+The log link guarantees:
+
+$$
+\mu > 0
+$$
+
+This is consistent with the domain of WMH volumes and avoids invalid predictions.
+
+---
+
+### 2. Handling Skewness
+
+Right-skewed outcomes are naturally stabilised on the log scale. This improves numerical behaviour and estimation stability.
+
+---
+
+### 3. Interpretability
+
+Coefficients have a multiplicative interpretation:
+
+$$
+\exp(\beta_j) - 1
+$$
+
+represents a proportional change in the mean outcome for a one-unit increase in a predictor.
+
+---
+
+### 4. Compatibility with the Tweedie Variance Structure
+
+The log link aligns well with the mean–variance relationship:
+
+$$
+\mathrm{Var}(Y) \propto \mu^p
+$$
+
+which reflects increasing variability with increasing mean — a common feature of WMH data.
+
+---
+
+### 5. Practical Considerations
+
+Tweedie GLMs are widely used for outcomes that:
+
+- include zeros  
+- are otherwise continuous and positive  
+- are strongly skewed  
+
+Examples include rainfall, healthcare costs, and income data. [6](https://library.virginia.edu/data/articles/getting-started-tweedie-models-0)  
+
+The log link is the standard choice in these settings due to its robustness and interpretability.
+
+---
+
+## Comparison with Gamma Models
+
+Gamma GLMs (typically with a log link) are a common alternative for skewed biomedical outcomes. However:
+
+- Gamma models require strictly positive data  
+- They cannot represent the probability of zero  
+
+As a result, they are misspecified for WMH outcomes when zero values are present.
+
+The Tweedie model resolves this limitation by incorporating both zeros and positive values within a single likelihood framework, avoiding the need for ad hoc solutions.
+
+---
+
+## Conclusion
+
+The Tweedie generalized linear model with a log link provides a principled and flexible approach for modelling white matter hyperintensities. Specifically:
+
+- The Tweedie family with $1 < p < 2$ captures both zero and continuous positive outcomes  
+- The compound Poisson–gamma structure provides a natural interpretation for WMH accumulation  
+- The log link ensures positivity, improves stability, and yields interpretable effects  
+
+Taken together, these properties make the Tweedie model a compelling alternative to conventional gamma-based approaches when modelling WMH data with zeros.
+
+---
+
+## References
+
+- Dunn, P. K., & Smyth, G. K. (2005, 2008). Tweedie exponential dispersion models  
+- Hardin and Hilbe's Generalized Linear Models and Extensions. 4th Edition, Stata Press 2018, isbn 978-1-59718-225-6.
+- Jørgensen, B. (1987). Exponential dispersion models  
+- Smyth, G. K. (1996). Regression modelling of data with exact zeros  
+- McCullagh, P., & Nelder, J. A. (1989). *Generalized Linear Models*  
