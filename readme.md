@@ -2,6 +2,7 @@
 
 ## Why the Tweedie Model with Log Link is Appropriate for Modelling White Matter Hyperintensities
 
+White matter hyperintensities (WMH), commonly quantified from neuroimaging data, are widely used as markers of small vessel cerebrovascular disease and brain ageing. These outcomes typically exhibit a **highly right-skewed distribution**, with a substantial proportion of individuals having values close to or exactly zero. This combination presents challenges for standard regression modelling approaches.
 
 ---
 
