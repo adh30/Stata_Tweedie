@@ -175,7 +175,7 @@ The Tweedie generalized linear model with a log link provides a principled and f
 - The compound Poisson–gamma structure provides a natural interpretation for WMH accumulation  
 - The log link ensures positivity, improves stability, and yields interpretable effects  
 
-Taken together, these properties make the Tweedie model a compelling alternative to conventional gamma-based approaches when modelling WMH data with zeros.
+Taken together, these properties make the Tweedie model an attractive alternative to conventional gamma-based approaches when modelling WMH data with zeros.
 
 ---
 
