@@ -10,7 +10,7 @@ The implementation gives the same results as shown in the Hardin and Hilbe book.
 
 * Book examples
 use http://www.stata-press.com/data/hh4/medpar, clear
-glm los hmo white age, family(gauss) irls nolog
+glm los hmo white age, family(poisson) irls nolog
 glm los hmo white age, family(tweedie 1) link(power 0) irls nolog
 
 glm los hmo white age, family(gauss) irls nolog
