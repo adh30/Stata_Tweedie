@@ -167,6 +167,84 @@ The Tweedie model resolves this limitation by incorporating both zeros and posit
 
 ---
 
+## Comparison between R and Stata
+I compared a Tweedie analysis using a compound Poisson–Gamma GLM (`cpglm`) in R on synthetic data (generated using the `statmod`, `cplm`, and `tweedie` packages) with the equivalent implementation in Stata.
+
+The R `cpglm` model uses a **true likelihood-based approach**, converging to maximum likelihood estimates (MLE) for both the regression coefficients and the Tweedie index parameter \(p\).
+
+In contrast, Stata’s `glm` implementation for the Tweedie family uses **iteratively reweighted least squares (IRLS)** with a **quasi-likelihood framework**, where the index parameter \(p\) is fixed at a user-specified value rather than estimated from the data. 
+Despite these methodological differences, the resulting parameter estimates in the simulated case are very similar.
+
+---
+
+### Results in R
+#### cpglm Model Summary
+
+##### Model Call
+| Function | Formula              | Data |
+|----------|----------------------|------|
+| cpglm    | y ~ x1 + x2          | data |
+
+##### Deviance Residuals
+| Min     | 1Q      | Median  | 3Q     | Max    |
+|--------|--------|--------|--------|--------|
+| -3.1881 | -0.8666 | -0.1653 | 0.5259 | 2.9629 |
+
+##### Coefficients
+
+| Term     | Estimate      | Std Error  | t value  | P    |
+|--------|--------|--------|--------|--------|
+| x1          | 0.298794  | 0.006728   | 44.41   | <2e-16   | 
+| x2          | -0.186876 | 0.018559   | -10.07  | <2e-16   | 
+| (Intercept) | 0.514807  | 0.045354   | 11.35   | <2e-16   | 
+
+##### Model Parameters
+| Parameter                    | Value  |
+|-----------------------------|--------|
+| Dispersion parameter        | 1.0171 |
+| Index parameter             | 1.5045 |
+
+##### Fit Statistics
+| Metric                      | Value   |
+|----------------------------|--------|
+| Residual deviance (df=997) | 1133.2 |
+| AIC                        | 5706.3 |
+| Fisher scoring iterations  | 4      |
+
+---
+
+### Results in Stata
+##### Model Summary
+
+| Metric                  | Value        |
+|------------------------|--------------|
+| Number of observations | 1000         |
+| Residual df            | 997          |
+| Scale parameter        | 1            |
+| Deviance               | 1141.2658    |
+| Deviance / df          | 1.1447       |
+| Pearson                | 1007.544454  |
+| Pearson / df           | 1.010576     |
+| BIC                    | -5745.766    |
+
+
+### Model Specification
+| Component         | Specification               |
+|------------------|----------------------------|
+| Family           | Tweedie (p = 1.5)          |
+| Variance         | V(u) = φ·u^1.5             |
+| Link function    | Log (ln)                   |
+| Estimation       | IRLS (MQL Fisher scoring)  |
+
+### Coefficients
+| Term        | Estimate  | Std Error | z value | P | 95% CI |
+|-------------|-----------|------------|---------|------|----------------|
+| x1          | 0.2988052 | 0.0067286  | 44.41   | 0.000| 0.2856174      | 0.3119929      |
+| x2          | -0.1868688| 0.018546   | -10.08  | 0.000| -0.2232183     | -0.1505193     |
+| _cons       | 0.5147366 | 0.0454147  | 11.33   | 0.000| 0.4257254      | 0.6037478      |
+
+---
+
 ## Conclusion
 
 The Tweedie generalized linear model with a log link provides a principled and flexible approach for modelling white matter hyperintensities. Specifically:
@@ -175,7 +253,7 @@ The Tweedie generalized linear model with a log link provides a principled and f
 - The compound Poisson–gamma structure provides a natural interpretation for WMH accumulation  
 - The log link ensures positivity, improves stability, and yields interpretable effects  
 
-Taken together, these properties make the Tweedie model an attractive alternative to conventional gamma-based approaches when modelling WMH data with zeros.
+Taken together, these properties make the Tweedie model an attractive alternative to conventional gamma-based approaches when modelling WMH data with zeros. 
 
 ---
 
