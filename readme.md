@@ -3,11 +3,17 @@
 Implements a Tweedie family in Stata's Generalized linear models (glm) command. 
 ## Files
 tweedie.ado - the core program based on Hardin and Hilbe (2018).
+
 tweedie1.do - runs an example from Hardin and Hilbe
+
 tweedie.sthlp - stata help file for program
+
 tweedie_rev_resid.do - calculates deviance residuals and plots them for diagnostics
+
 tweedie_rqr.do - calculates Randomised Quantile Residual (RQRs) for diagnostics
+
 tweedie_simulated_data.dta - data generated in R to compare R and Stata analyses. (See below)
+
 Other code is in R and relates to this comparison.
 
 ## Why the Tweedie GLM model with log link may be useful for modelling White Matter Hyperintensity volume
